@@ -1,0 +1,38 @@
+<div class="container">
+  <!-- No data message -->
+  <p *ngIf="Estudiante.length <= 0" class="no-data text-center">There is no Estudiante added yet!</p>
+
+  <!-- Employee list -->
+  <table class="table table-bordered" *ngIf="Estudiante.length > 0">
+    <thead style="background-color: rgb(241, 241, 241); border-color: rgb(241, 241, 241);" class="table-success">
+      <tr >
+        <th style="border-color: rgb(241, 241, 241);" scope="col">Estudiante ID</th>
+        <th style="border-color: rgb(241, 241, 241);" scope="col">Name</th>
+        <th style="border-color: rgb(241, 241, 241);" scope="col">Grado</th>
+        <th style="border-color: rgb(241, 241, 241);" scope="col">Grupo</th>
+        <th style="border-color: rgb(241, 241, 241);" scope="col">Materia</th>
+        <th style="border-color: rgb(241, 241, 241);" scope="col">Calificacion</th>
+        <th style="border-color: rgb(241, 241, 241);" scope="col center">Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let estudiante of Estudiante; let i = index">
+        <th scope="row">{{estudiante._id}}</th>
+        <td>{{estudiante.name}}</td>
+        <td>{{estudiante.grado}}</td>
+        <td>{{estudiante.grupo}}</td>
+        <td>{{estudiante.materia}}</td>
+        <td>{{estudiante.calificacion}}</td>
+        <td class="text-center edit-block">
+          <span class="edit" [routerLink]="['/edit-estudiante/', estudiante._id]">
+            <button style="background-color: blue; border-color: blue;" type="button" class="btn btn-success btn-sm">Edit</button>
+          </span>
+          <br><br>
+          <span class="delete" (click)="removeEstudiante(estudiante, i)">
+            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
